@@ -18,7 +18,7 @@ public class BoxScript : MonoBehaviour
     private void Awake()
     {
         myBody = GetComponent<Rigidbody2D>();
-        myBody.gravityScale = 0f;
+        myBody.gravityScale = 0f;//left-right moving should be without falling down
     }
 
     // Start is called before the first frame update
@@ -63,10 +63,11 @@ public class BoxScript : MonoBehaviour
     public void DropBox()
     {
         canMove = false;
-        myBody.gravityScale = Random.Range(2, 4);
+        //myBody.gravityScale = Random.Range(2, 4);
+        myBody.gravityScale = 3;
     }
 
-    void Landed()
+    public void Landed()
     {
         if (gameOver) return;
 
@@ -88,13 +89,13 @@ public class BoxScript : MonoBehaviour
 
         if (target.gameObject.tag == "Platform")
         {
-            Invoke("landed", 2f);
+            Invoke("Landed", 2f);
             ignoreCollision = true;
         }
 
         if (target.gameObject.tag == "Box")
         {
-            Invoke("landed", 2f);
+            Invoke("Landed", 2f);
             ignoreCollision = true;
         }
     }
