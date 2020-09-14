@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameplayController : MonoBehaviour
 {
@@ -13,6 +14,10 @@ public class GameplayController : MonoBehaviour
 
     public CameraFollow cameraScript;
     private int moveCount;
+
+    public Text scoreText;
+    public int currentScore = 0;
+
 
     private void Awake()
     {
@@ -61,6 +66,11 @@ public class GameplayController : MonoBehaviour
             moveCount = 0;
             cameraScript.targetPos.y += 2f;
         }
+
+        currentScore++;
+        scoreText.text = currentScore.ToString();
+
+
     }
 
     public void RestartGame()

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class BoxScript : MonoBehaviour
 {
     private float min_x = -3.1f, max_x = 3.1f;
