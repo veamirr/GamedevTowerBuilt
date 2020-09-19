@@ -5,6 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class ScreenSwitcher : MonoBehaviour
 {
+    public static bool GameIsPaused = false;
+    public GameObject pauseMenuUI;
+
     public void playGame()//из стартового меню в игру
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);//к текущему адресы сцены +1, и загружаем следующую сцену

@@ -8,7 +8,7 @@ public class BoxSpawner : MonoBehaviour
 
     public void SpawnBox()//spawn new box
     {
-        GameObject box_Obj = Instantiate(box_Prefab);
+        GameObject box_Obj = Instantiate(box_Prefab);//makes clone
         box_Obj.transform.position = new Vector3(transform.position.x, transform.position.y, 0);
 
     }
