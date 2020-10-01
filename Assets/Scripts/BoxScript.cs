@@ -5,24 +5,24 @@ using UnityEngine;
 
 public class BoxScript : MonoBehaviour
 {
-    private float min_x = -3.1f, max_x = 3.1f;
+    private float min_x = -2.3f, max_x = 2.3f;
 
     private bool canMove;
     private float move_Speed = 2f;
 
     private Rigidbody2D myBody;
-    //private SpringJoint2D newmyBody;
 
     private bool gameOver;
     private bool ignoreCollision;
     private bool ignoreTrigger;
 
+    
     private void Awake()
     {
+
         myBody = GetComponent<Rigidbody2D>();
         myBody.gravityScale = 0f;//left-right moving should be without falling down
-        //newmyBody = GetComponent<SpringJoint2D>();
-
+        
     }
 
     // Start is called before the first frame update
@@ -35,7 +35,7 @@ public class BoxScript : MonoBehaviour
             move_Speed *= -1f;
         }
 
-        GameplayController.instance.currentBox = this;//??????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????
+        GameplayController.instance.currentBox = this;
     }
 
     // Update is called once per frame
@@ -51,11 +51,11 @@ public class BoxScript : MonoBehaviour
             Vector3 temp = transform.position;
             temp.x += move_Speed * Time.deltaTime;
 
-            if(temp.x > max_x)
+            if(temp.x >= max_x)
             {
                 move_Speed *= -1f;
             }
-            else if (temp.x < min_x)
+            else if (temp.x <= min_x)
             {
                 move_Speed *= -1f;
             }
@@ -100,6 +100,16 @@ public class BoxScript : MonoBehaviour
         {
             Invoke("Landed", 2f);
             ignoreCollision = true;
+        }
+
+        if (target.gameObject.tag == "Bird")
+        {
+            CancelInvoke("Landed");
+            gameOver = true;
+            //ignoreCollision = true;
+            //ignoreTrigger = true;
+
+            Invoke("RestartGame", 2f);
         }
     }
 

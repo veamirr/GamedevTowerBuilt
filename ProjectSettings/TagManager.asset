@@ -7,6 +7,7 @@ TagManager:
   - Box
   - Platform
   - GameOver
+  - Bird
   layers:
   - Default
   - TransparentFX
